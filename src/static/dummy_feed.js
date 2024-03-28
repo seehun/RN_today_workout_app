@@ -10,7 +10,8 @@ const dummy_feed = [
       "https://picsum.photos/400/400",
     ],
     category: "헬스",
-    contents: "등운동 세션\n\n턱걸이 3x10 \n랫풀 4x12 45kg\n\n\n\n\nasdf",
+    contents:
+      "등운동 세션\n\n턱걸이 3x10 \n랫풀 4x10 50kg\nt바로우 4x12 25kg\n원암덤벨로우 3x12 20kg\n로우머신 4x12 40kg\n\n완료..",
     like: 12,
     myLike: false,
     comments: 3,

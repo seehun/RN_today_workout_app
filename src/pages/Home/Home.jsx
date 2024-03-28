@@ -21,6 +21,7 @@ const Home = () => {
       />
     );
   };
+  console.log(feedCommentId);
 
   return (
     <SafeAreaView style={styles.container}>

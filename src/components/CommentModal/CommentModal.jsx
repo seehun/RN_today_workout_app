@@ -50,7 +50,6 @@ const EmptyComment = () => {
 const CommentModal = ({ isVisible, setIsVisible, feed_id }) => {
   // feed_id에 따른 댓글 데이터 들고오기
   const [commentData, setCommentData] = useState();
-
   useEffect(() => {
     dummy_comments.map((e, i) => {
       if (e.feed_id === feed_id) {
@@ -58,7 +57,7 @@ const CommentModal = ({ isVisible, setIsVisible, feed_id }) => {
         setCurrentCommentId(e.comments.length + 1);
       }
     });
-  }, []);
+  }, [feed_id]);
 
   //댓글 쓰기 작성
   // 댓글 텍스트

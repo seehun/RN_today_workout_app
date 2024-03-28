@@ -29,11 +29,13 @@ const FeedItem = ({
     }
     setHeartClicked(!heartClicked);
   };
-  // 피드가 렌더링 되는 순간 해당 피드에 맞는 댓글 데이터정보 업데이트
-  useEffect(() => {
+
+  //comment 모달 켜기
+  const clickCommentIcon = () => {
+    setIsVisible(!isVisible);
+    // 피드가 렌더링 되는 순간 해당 피드에 맞는 댓글 데이터정보 업데이트
     setFeedCommentId(item.feed_id);
-  }, []);
-  console.log(item.feed_id);
+  };
 
   return (
     <ScrollView
@@ -90,7 +92,7 @@ const FeedItem = ({
               <Image source={heart} style={styles.feedFeatureHeart} />
             )}
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => setIsVisible(!isVisible)}>
+          <TouchableOpacity onPress={clickCommentIcon}>
             <Image source={comment} style={styles.feedFeatureIcon} />
           </TouchableOpacity>
         </View>
