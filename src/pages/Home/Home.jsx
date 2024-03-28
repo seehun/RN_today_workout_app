@@ -9,6 +9,7 @@ const { width, height } = Dimensions.get("window");
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const [feedCommentId, setFeedCommentId] = useState(2);
   const renderFeeds = ({ item, index }) => {
     return (
       <FeedItem
@@ -16,6 +17,7 @@ const Home = () => {
         index={index}
         isVisible={isVisible}
         setIsVisible={setIsVisible}
+        setFeedCommentId={setFeedCommentId}
       />
     );
   };
@@ -38,7 +40,7 @@ const Home = () => {
         <CommentModal
           isVisible={isVisible}
           setIsVisible={setIsVisible}
-          id={1}
+          feed_id={feedCommentId}
         />
       </View>
     </SafeAreaView>

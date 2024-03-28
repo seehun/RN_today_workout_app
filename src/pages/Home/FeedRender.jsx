@@ -1,20 +1,24 @@
 import {
-  StyleSheet,
   Text,
   View,
-  SafeAreaView,
   Image,
   TouchableOpacity,
-  FlatList,
   Dimensions,
   ScrollView,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./HomeStyle";
 
 const { width, height } = Dimensions.get("window");
 
-const FeedItem = ({ item, index, isVisible, setIsVisible }) => {
+const FeedItem = ({
+  item,
+  index,
+  isVisible,
+  setIsVisible,
+  setFeedCommentId,
+}) => {
+  // 좋아요
   const [heartNum, setHeartNum] = useState(item.like);
   const [heartClicked, setHeartClicked] = useState(item.myLike);
   const heartClickHandler = () => {
@@ -25,6 +29,12 @@ const FeedItem = ({ item, index, isVisible, setIsVisible }) => {
     }
     setHeartClicked(!heartClicked);
   };
+  // 피드가 렌더링 되는 순간 해당 피드에 맞는 댓글 데이터정보 업데이트
+  useEffect(() => {
+    setFeedCommentId(item.feed_id);
+  }, []);
+  console.log(item.feed_id);
+
   return (
     <ScrollView
       style={styles.feedContainer}

@@ -1,11 +1,9 @@
 import {
-  StyleSheet,
   Text,
   View,
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
-  Dimensions,
   FlatList,
   Image,
   Keyboard,
@@ -13,8 +11,7 @@ import {
 import React, { useState, useCallback, useEffect } from "react";
 import Modal from "react-native-modal";
 
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
-
+// comment item
 const CommentItem = ({ item, index }) => {
   return (
     <View style={commentStyles.container}>
@@ -38,21 +35,56 @@ const CommentItem = ({ item, index }) => {
   );
 };
 
-const CommentModal = ({ isVisible, setIsVisible, id }) => {
+// if empty
+const EmptyComment = () => {
+  return (
+    <View style={emptyStyle.container}>
+      <View style={emptyStyle.wrapper}>
+        <Text style={emptyStyle.text}>아직 아무도 댓글을 달지 않았어요.</Text>
+        <Text style={emptyStyle.text}>처음으로 응원을 남겨주세요.</Text>
+      </View>
+    </View>
+  );
+};
+
+const CommentModal = ({ isVisible, setIsVisible, feed_id }) => {
+  // feed_id에 따른 댓글 데이터 들고오기
   const [commentData, setCommentData] = useState();
 
   useEffect(() => {
     dummy_comments.map((e, i) => {
-      if (e.feed_id === id) {
+      if (e.feed_id === feed_id) {
         setCommentData(e.comments);
+        setCurrentCommentId(e.comments.length + 1);
       }
     });
   }, []);
 
+  //댓글 쓰기 작성
+  // 댓글 텍스트
   const [commentText, setCommentText] = useState("");
+  //댓글 아이디
+  const [currentCommentId, setCurrentCommentId] = useState();
+
   const handleCommentText = (text) => {
     setCommentText(text);
   };
+
+  const handleSubmit = (text) => {
+    const newComment = {
+      id: currentCommentId,
+      name: "me",
+      user_id: 100,
+      contents: text,
+      profileImage: "https://avatar.iran.liara.run/public",
+    };
+
+    const newCommentData = [...commentData, { ...newComment }];
+    setCommentData(newCommentData);
+    setCurrentCommentId(currentCommentId + 1);
+  };
+
+  // console.log(commentData);
   const renderComments = useCallback(({ item, index }) => (
     <CommentItem item={item} index={index} />
   ));
@@ -74,7 +106,6 @@ const CommentModal = ({ isVisible, setIsVisible, id }) => {
       hideModalContentWhileAnimating
     >
       <KeyboardAvoidingView
-        // behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={8}
         style={{ width: "100%" }}
       >
@@ -82,6 +113,7 @@ const CommentModal = ({ isVisible, setIsVisible, id }) => {
           <View style={styles.barWrapper}>
             <View style={styles.bar}></View>
           </View>
+          {/* comments */}
           <View style={styles.comments}>
             <Text style={{ marginBottom: 8 }}>댓글</Text>
             <FlatList
@@ -89,11 +121,12 @@ const CommentModal = ({ isVisible, setIsVisible, id }) => {
               data={commentData}
               renderItem={renderComments}
               keyExtractor={(item) => item.id}
-              //   ListEmptyComponent={}
+              ListEmptyComponent={<EmptyComment />}
               ItemSeparatorComponent={<View style={{ height: 30 }} />}
               style={styles.commentList}
             />
           </View>
+          {/* input */}
           <View style={styles.inputContainer}>
             <View style={styles.inputWrapper}>
               <TextInput
@@ -109,11 +142,8 @@ const CommentModal = ({ isVisible, setIsVisible, id }) => {
               />
             </View>
             <TouchableOpacity
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                marginBottom: 28,
-              }}
+              style={styles.submitIcon}
+              onPress={() => handleSubmit(commentText)}
             >
               <Image source={add} style={styles.submit} />
             </TouchableOpacity>
@@ -131,87 +161,4 @@ import dummy_comments from "../../static/dummy_comments";
 import more from "../../assets/icons/more.png";
 import add from "../../assets/icons/bottomTab/add_circle.png";
 
-const styles = StyleSheet.create({
-  modalContainer: {
-    margin: 0,
-    alignItems: "center",
-    justifyContent: "flex-end",
-  },
-  contents: {
-    paddingTop: 20,
-    paddingHorizontal: 16,
-    height: SCREEN_HEIGHT / 1.5,
-    backgroundColor: "#fff",
-    borderTopStartRadius: 16,
-    borderTopEndRadius: 16,
-  },
-  barWrapper: {
-    position: "absolute",
-    top: 16,
-    left: 0,
-    right: 0,
-    alignItems: "center",
-  },
-  bar: {
-    width: 30,
-    height: 3,
-    borderRadius: 4,
-    backgroundColor: "#eee",
-  },
-  comments: {
-    flex: 1,
-    // justifyContent: 'center',
-    height: 30,
-    alignItems: "center",
-    marginTop: 12,
-  },
-  commentList: {
-    flex: 1,
-    width: "100%",
-  },
-  //   input
-  inputContainer: {
-    borderTopWidth: 1,
-    borderTopColor: "#eee",
-    flexDirection: "row",
-    alignItems: "flex-end",
-    gap: 8,
-  },
-  inputWrapper: {
-    flex: 1,
-    justifyContent: "center",
-    paddingHorizontal: 12,
-    marginTop: 16,
-    marginBottom: 24,
-    minHeight: 40,
-    maxHeight: 130,
-    borderRadius: 6,
-    borderWidth: 2,
-    borderColor: "#666",
-  },
-  input: {
-    minHeight: 23,
-    maxHeight: 60,
-    paddingVertical: 0,
-    fontSize: 15,
-    lineHeight: 16,
-  },
-  submit: {
-    width: 30,
-    height: 30,
-  },
-});
-
-const commentStyles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-    columnGap: 6,
-  },
-  profile: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-});
+import { styles, commentStyles, emptyStyle } from "./CommentModalStyle";
