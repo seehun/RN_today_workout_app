@@ -7,12 +7,18 @@ import FeedItem from "./FeedRender";
 
 const { width, height } = Dimensions.get("window");
 
-const renderFeeds = ({ item, index }) => {
-  return <FeedItem item={item} index={index} />;
-};
-
 const Home = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const renderFeeds = ({ item, index }) => {
+    return (
+      <FeedItem
+        item={item}
+        index={index}
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+      />
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -22,14 +28,18 @@ const Home = () => {
           horizontal
           data={dummy_feed}
           renderItem={renderFeeds}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.feed_id}
           removeClippedSubviews
           showsHorizontalScrollIndicator={false}
           snapToInterval={width}
           snapToAlignment="start"
           decelerationRate={"fast"}
         />
-        {/* <CommentModal isVisible={isVisible} setIsVisible={setIsVisible} /> */}
+        <CommentModal
+          isVisible={isVisible}
+          setIsVisible={setIsVisible}
+          id={1}
+        />
       </View>
     </SafeAreaView>
   );

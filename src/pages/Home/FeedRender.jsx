@@ -14,7 +14,7 @@ import styles from "./HomeStyle";
 
 const { width, height } = Dimensions.get("window");
 
-const FeedItem = ({ item, index }) => {
+const FeedItem = ({ item, index, isVisible, setIsVisible }) => {
   const [heartNum, setHeartNum] = useState(item.like);
   const [heartClicked, setHeartClicked] = useState(item.myLike);
   const heartClickHandler = () => {
@@ -80,7 +80,7 @@ const FeedItem = ({ item, index }) => {
               <Image source={heart} style={styles.feedFeatureHeart} />
             )}
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setIsVisible(!isVisible)}>
             <Image source={comment} style={styles.feedFeatureIcon} />
           </TouchableOpacity>
         </View>

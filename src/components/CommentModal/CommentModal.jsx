@@ -5,19 +5,15 @@ import {
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
-  Platform,
   Dimensions,
   FlatList,
   Image,
   Keyboard,
 } from "react-native";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Modal from "react-native-modal";
 
-import dummy_comments from "../../static/dummy_comments";
-
-import more from "../../assets/icons/more.png";
-import add from "../../assets/icons/bottomTab/add_circle.png";
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 const CommentItem = ({ item, index }) => {
   return (
@@ -42,8 +38,17 @@ const CommentItem = ({ item, index }) => {
   );
 };
 
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
-const CommentModal = ({ isVisible, setIsVisible }) => {
+const CommentModal = ({ isVisible, setIsVisible, id }) => {
+  const [commentData, setCommentData] = useState();
+
+  useEffect(() => {
+    dummy_comments.map((e, i) => {
+      if (e.feed_id === id) {
+        setCommentData(e.comments);
+      }
+    });
+  }, []);
+
   const [commentText, setCommentText] = useState("");
   const handleCommentText = (text) => {
     setCommentText(text);
@@ -81,7 +86,7 @@ const CommentModal = ({ isVisible, setIsVisible }) => {
             <Text style={{ marginBottom: 8 }}>댓글</Text>
             <FlatList
               showsVerticalScrollIndicator={false}
-              data={dummy_comments}
+              data={commentData}
               renderItem={renderComments}
               keyExtractor={(item) => item.id}
               //   ListEmptyComponent={}
@@ -120,6 +125,11 @@ const CommentModal = ({ isVisible, setIsVisible }) => {
 };
 
 export default CommentModal;
+
+import dummy_comments from "../../static/dummy_comments";
+
+import more from "../../assets/icons/more.png";
+import add from "../../assets/icons/bottomTab/add_circle.png";
 
 const styles = StyleSheet.create({
   modalContainer: {

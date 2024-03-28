@@ -1,6 +1,7 @@
 const dummy_feed = [
   {
-    id: 1,
+    feed_id: 1,
+    user_id: 12,
     name: "sehun",
     profileImage: "https://avatar.iran.liara.run/public",
     feedImg: [
@@ -16,7 +17,8 @@ const dummy_feed = [
     likeUsers: [1, 2, 3],
   },
   {
-    id: 2,
+    feed_id: 2,
+    user_id: 3,
     name: "kim",
     profileImage: "https://avatar.iran.liara.run/public",
     feedImg: [
