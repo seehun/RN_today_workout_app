@@ -7,7 +7,11 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "clean:android": "cd android && ./gradlew clean",
+    "clean:ios": "cd ios && xcodebuild clean",
+    "clean:watchman": "watchman watch-del ${PWD} ; watchman watch-project ${PWD}",
+    "clean": "yarn clean:ios && yarn clean:android && yarn clean:watchman"
   },
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.5.20",
