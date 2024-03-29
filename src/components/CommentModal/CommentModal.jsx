@@ -11,6 +11,7 @@ import {
 import React, { useState, useCallback, useEffect } from "react";
 import Modal from "react-native-modal";
 
+import { setCommentDataInStorage } from "../../utils";
 import storage from "../../storage";
 
 // comment item
@@ -88,18 +89,12 @@ const CommentModal = ({ isVisible, setIsVisible, feed_id }) => {
       contents: text,
       profileImage: "https://avatar.iran.liara.run/public",
     };
-
     // 들어갈 댓글 데이터
     const newCommentData = [...commentData, { ...newComment }];
     //storage에 넣어주기
-    storage.save({
-      key: "comments",
-      id: feed_id,
-      data: newCommentData,
-      expires: 1000 * 3600,
-    });
-    setCommentData(newCommentData);
+    setCommentDataInStorage(feed_id, newCommentData);
     setCurrentCommentId(currentCommentId + 1);
+    getCommentsData();
     setCommentText("");
   };
 
@@ -174,8 +169,6 @@ const CommentModal = ({ isVisible, setIsVisible, feed_id }) => {
 };
 
 export default CommentModal;
-
-import dummy_comments from "../../static/dummy_comments";
 
 import more from "../../assets/icons/more.png";
 import add from "../../assets/icons/bottomTab/add_circle.png";

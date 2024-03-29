@@ -7,6 +7,7 @@ import {
   feed3_dummy_comment,
 } from "../static/dummy_comments";
 
+//초기화 로직
 export const setInitialFeeds = () => {
   storage.save({
     key: "feeds", // Note: Do not use underscore("_") in key!
@@ -35,6 +36,17 @@ export const setInitialComments = () => {
     key: "comments", // Note: Do not use underscore("_") in key!
     id: "3", //feed_id
     data: feed3_dummy_comment,
+    expires: 1000 * 3600,
+  });
+};
+
+// 데이터 추가 로직
+
+export const setCommentDataInStorage = (feed_id, newCommentData) => {
+  storage.save({
+    key: "comments",
+    id: feed_id,
+    data: newCommentData,
     expires: 1000 * 3600,
   });
 };
