@@ -35,7 +35,7 @@ const CustomBottomTabs = ({ state, navigation, insets, descriptors }) => {
           switch (label) {
             case "Home":
               return bool ? home_on : home;
-            case "Search":
+            case "SearchTab":
               return bool ? search_on : search;
             case "Add":
               return add;

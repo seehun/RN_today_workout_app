@@ -9,7 +9,7 @@ const { width, height } = Dimensions.get("window");
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(true);
-  const [feedCommentId, setFeedCommentId] = useState(2);
+  const [feedCommentId, setFeedCommentId] = useState();
   const renderFeeds = ({ item, index }) => {
     return (
       <FeedItem
@@ -21,7 +21,7 @@ const Home = () => {
       />
     );
   };
-  console.log(feedCommentId);
+  // console.log(feedCommentId);
 
   return (
     <SafeAreaView style={styles.container}>
