@@ -8,7 +8,7 @@ import FeedItem from "./FeedRender";
 const { width, height } = Dimensions.get("window");
 
 const Home = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const [feedCommentId, setFeedCommentId] = useState();
   const renderFeeds = ({ item, index }) => {
     return (

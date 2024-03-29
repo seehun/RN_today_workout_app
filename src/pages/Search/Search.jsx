@@ -15,8 +15,12 @@ const { width } = Dimensions.get("window");
 
 const Search = ({ navigation }) => {
   const renderSearch = ({ item }) => {
+    const handleSearchItemClick = () => {};
     return (
-      <TouchableOpacity style={styles.searchItemWrapper}>
+      <TouchableOpacity
+        style={styles.searchItemWrapper}
+        onPress={handleSearchItemClick}
+      >
         {item.isMulti && <Image source={multi} style={styles.multiPhoto} />}
         <Image source={{ uri: item.feedImg[0] }} style={styles.searchItem} />
       </TouchableOpacity>

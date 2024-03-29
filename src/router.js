@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home";
 import Search from "./pages/Search/Search";
 import SearchList from "./pages/Search/SearchList";
 import Add from "./pages/Add/Add";
+import AddDetail from "./pages/Add/AddDetail";
 import Chatting from "./pages/Chatting/Chatting";
 import Person from "./pages/Person/Person";
 
@@ -33,7 +34,10 @@ const renderTabBar = (props) => <CustomBottomTabs {...props} />;
 
 const MainTab = () => {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }} tabBar={renderTabBar}>
+    <Tab.Navigator
+      screenOptions={{ headerShown: false, gestureEnabled: false }}
+      tabBar={renderTabBar}
+    >
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="SearchTab" component={SearchTab} />
       <Tab.Screen name="Add" component={Add} />
@@ -48,11 +52,11 @@ const Router = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        gestureEnabled: false,
       }}
     >
       <Stack.Screen name="Splash" component={Splash} />
       <Stack.Screen name="MainTab" component={MainTab} />
+      <Stack.Screen name="AddDetail" component={AddDetail} />
     </Stack.Navigator>
   );
 };

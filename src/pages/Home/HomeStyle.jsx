@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
   feedProfileImage: {
     width: 32,
     height: 32,
+    borderRadius: 16,
   },
   //   feedDetail
   feedDetail: {

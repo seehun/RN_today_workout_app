@@ -57,7 +57,12 @@ const FeedItem = ({
       </View>
       <Image
         source={{ uri: item.feedImg[0] }}
-        style={{ width: width, height: width, marginBottom: 8 }}
+        style={{
+          width: width,
+          height: width,
+          marginBottom: 8,
+          backgroundColor: "#f8f8f8",
+        }}
         resizeMode="contain"
       />
       {/* feedDetail */}
