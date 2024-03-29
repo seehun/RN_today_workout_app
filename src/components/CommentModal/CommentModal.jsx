@@ -11,6 +11,8 @@ import {
 import React, { useState, useCallback, useEffect } from "react";
 import Modal from "react-native-modal";
 
+import storage from "../../storage";
+
 // comment item
 const CommentItem = ({ item, index }) => {
   return (
@@ -49,21 +51,30 @@ const EmptyComment = () => {
 
 const CommentModal = ({ isVisible, setIsVisible, feed_id }) => {
   // feed_id에 따른 댓글 데이터 들고오기
-  const [commentData, setCommentData] = useState();
+
+  const [commentData, setCommentData] = useState(); // feed_id에 맞는 commentData
+
+  const getCommentsData = () => {
+    storage
+      .load({
+        key: "comments",
+        id: feed_id,
+      })
+      .then((res) => setCommentData(res))
+      .catch((err) => {
+        // console.warn(err.message);
+      });
+  };
+
   useEffect(() => {
-    dummy_comments.map((e, i) => {
-      if (e.feed_id === feed_id) {
-        setCommentData(e.comments);
-        setCurrentCommentId(e.comments.length + 1);
-      }
-    });
+    // feed에 comment 데이터 넣어주기
+    getCommentsData();
+    // console.log(feed_id);
   }, [feed_id]);
 
-  //댓글 쓰기 작성
-  // 댓글 텍스트
-  const [commentText, setCommentText] = useState("");
-  //댓글 아이디
-  const [currentCommentId, setCurrentCommentId] = useState();
+  //댓글 쓰기
+  const [commentText, setCommentText] = useState(""); // 댓글 텍스트
+  const [currentCommentId, setCurrentCommentId] = useState(); //댓글 아이디
 
   const handleCommentText = (text) => {
     setCommentText(text);
@@ -78,9 +89,18 @@ const CommentModal = ({ isVisible, setIsVisible, feed_id }) => {
       profileImage: "https://avatar.iran.liara.run/public",
     };
 
+    // 들어갈 댓글 데이터
     const newCommentData = [...commentData, { ...newComment }];
+    //storage에 넣어주기
+    storage.save({
+      key: "comments",
+      id: feed_id,
+      data: newCommentData,
+      expires: 1000 * 3600,
+    });
     setCommentData(newCommentData);
     setCurrentCommentId(currentCommentId + 1);
+    setCommentText("");
   };
 
   // console.log(commentData);

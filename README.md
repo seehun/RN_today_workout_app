@@ -15,3 +15,5 @@
 
 - 카메라  
   npm install @react-native-camera-roll/camera-roll --save
+
+npm install redux react-redux --save
