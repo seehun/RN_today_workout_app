@@ -8,7 +8,9 @@ import {
   TextInput,
   Keyboard,
 } from "react-native";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
+
+import storage from "../../storage";
 
 const RecentSearchItem = () => {
   return (
@@ -30,7 +32,6 @@ const RecentSearchItem = () => {
 const SearchList = ({ route, navigation }) => {
   const [keyword, setKeyword] = useState("");
   const [feeds, setFeeds] = useState();
-  const [searchedFeed, setSearchedFeed] = useState();
 
   const getFeedData = () => {
     storage
@@ -43,15 +44,22 @@ const SearchList = ({ route, navigation }) => {
       });
   };
 
+  useEffect(() => {
+    getFeedData();
+  }, []);
+
   const inputRef = useRef();
 
-  const handleCancleButton = () => {
+  const handleCancelButton = () => {
     setKeyword("");
     Keyboard.dismiss();
     inputRef.current.focus();
   };
 
-  const handleSearch = () => {};
+  const handleSearch = () => {
+    const data = feeds.filter((e) => e.category === keyword);
+    navigation.navigate("Search", { searchedFeeds: data });
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
@@ -83,7 +91,7 @@ const SearchList = ({ route, navigation }) => {
           />
           {/* 취소버튼 */}
           {keyword && (
-            <TouchableOpacity onPress={handleCancleButton}>
+            <TouchableOpacity onPress={handleCancelButton}>
               <Image source={deleteIcon} style={styles.inputDeleteIcon} />
             </TouchableOpacity>
           )}

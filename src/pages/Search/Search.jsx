@@ -13,10 +13,21 @@ import React, { useEffect, useState } from "react";
 
 import storage from "../../storage";
 
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 
-const Search = ({ navigation }) => {
+const SearchEmpty = () => {
+  return (
+    <View style={emptyStyles.container}>
+      <View style={emptyStyles.wrapper}>
+        <Text style={emptyStyles.text}>검색결과가 없습니다.</Text>
+      </View>
+    </View>
+  );
+};
+
+const Search = ({ navigation, route }) => {
   const [feeds, setFeeds] = useState();
+  const [refresh, setRefresh] = useState(false);
 
   const getFeedData = () => {
     storage
@@ -25,13 +36,19 @@ const Search = ({ navigation }) => {
       })
       .then((res) => setFeeds(res))
       .catch((err) => {
-        console.warn(err.message);
+        // console.warn(err.message);
       });
   };
 
   useEffect(() => {
     getFeedData();
   }, []);
+
+  useEffect(() => {
+    if (route.params) {
+      setFeeds(route.params.searchedFeeds);
+    }
+  }, [route.params]);
 
   const renderSearch = ({ item }) => {
     const handleSearchItemClick = () => {};
@@ -71,6 +88,8 @@ const Search = ({ navigation }) => {
           removeClippedSubviews
           showsVerticalScrollIndicator={false}
           numColumns={3}
+          extraData={refresh}
+          ListEmptyComponent={<SearchEmpty />}
         />
       </View>
     </SafeAreaView>
@@ -130,5 +149,19 @@ const styles = StyleSheet.create({
     top: 8,
     right: 8,
     zIndex: 4,
+  },
+});
+
+const emptyStyles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
+    width: width,
+    height: height / 1.5,
+  },
+  wrapper: { alignItems: "center" },
+  text: {
+    color: "#828282",
+    fontSize: 14,
   },
 });

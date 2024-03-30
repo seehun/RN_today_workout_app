@@ -38,7 +38,7 @@ const Home = () => {
     getFeedData();
   }, []);
 
-  console.log(feeds);
+  // console.log(feeds);
 
   const renderFeeds = ({ item, index }) => {
     // console.log("item", item);
