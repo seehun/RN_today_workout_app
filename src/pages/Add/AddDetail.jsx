@@ -8,14 +8,77 @@ import {
   Dimensions,
   TextInput,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import storage from "../../storage";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 const AddDetail = ({ navigation, route }) => {
   const [keyword, setKeyword] = useState("");
-  //   console.log(route.params.selectedImage);
   const imageData = route.params.selectedImage;
+
+  //feed 정보 들고와서 추가해주기 -> 비효율적
+  const [feedData, setFeedData] = useState();
+  const [feedNum, setFeedNum] = useState();
+  const getFeedData = () => {
+    storage
+      .load({
+        key: "feeds",
+      })
+      .then((res) => setFeedData(res));
+    storage
+      .load({
+        key: "feedNumber",
+      })
+      .then((res) => setFeedNum(res));
+  };
+
+  useEffect(() => {
+    getFeedData();
+  }, []);
+
+  const handleSubmit = async () => {
+    // getFeedData();
+
+    const newFeed = {
+      feed_id: feedNum + 1,
+      user_id: 100,
+      name: "me",
+      profileImage: "https://picsum.photos/400/400",
+      feedImg: [imageData.uri],
+      category: "헬스",
+      contents: keyword,
+      like: 0,
+      myLike: false,
+      comments: 0,
+      likeUsers: [],
+    };
+
+    // console.log(feedData, newFeed);
+    const newFeedData = [...feedData, { ...newFeed }];
+
+    // console.log(newFeedData);
+
+    storage.save({
+      key: "feeds",
+      data: newFeedData,
+      expires: 1000 * 3600,
+    });
+    storage.save({
+      key: "comments",
+      id: `${feedNum}`, //feed_id
+      data: [],
+      expires: 1000 * 3600,
+    });
+    storage.save({
+      key: "feedNumber",
+      data: feedNum + 1,
+      expires: 1000 * 3600,
+    });
+
+    navigation.navigate("MainTab");
+  };
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#000" }}>
       {/* 헤더 */}
@@ -50,10 +113,7 @@ const AddDetail = ({ navigation, route }) => {
       </View>
       {/* submit */}
       <View style={styles.submitWrapper}>
-        <TouchableOpacity
-          style={styles.submitBtn}
-          onPress={() => navigation.navigate("MainTab")}
-        >
+        <TouchableOpacity style={styles.submitBtn} onPress={handleSubmit}>
           <Text style={styles.submitText}>공유</Text>
         </TouchableOpacity>
       </View>
@@ -110,7 +170,7 @@ const styles = StyleSheet.create({
     color: "#f2f2f2",
     paddingHorizontal: 8,
     paddingVertical: 12,
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: "400",
   },
   //submit

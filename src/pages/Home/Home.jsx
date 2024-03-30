@@ -1,4 +1,11 @@
-import { View, SafeAreaView, FlatList, Dimensions } from "react-native";
+import {
+  View,
+  SafeAreaView,
+  FlatList,
+  Dimensions,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./HomeStyle";
 
@@ -13,8 +20,9 @@ const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [feedCommentId, setFeedCommentId] = useState();
   const [feeds, setFeeds] = useState();
+  const [refresh, setRefresh] = useState(false);
 
-  useEffect(() => {
+  const getFeedData = () => {
     storage
       .load({
         key: "feeds",
@@ -23,11 +31,17 @@ const Home = () => {
       .catch((err) => {
         console.warn(err.message);
       });
+  };
+
+  useEffect(() => {
+    // console.log("1");
+    getFeedData();
   }, []);
 
-  // console.log(feeds);
+  console.log(feeds);
 
   const renderFeeds = ({ item, index }) => {
+    // console.log("item", item);
     return (
       <FeedItem
         item={item}
@@ -40,8 +54,16 @@ const Home = () => {
   };
   // console.log(feedCommentId);
 
+  const reload = () => {
+    getFeedData();
+    setRefresh(!refresh);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
+      <TouchableOpacity onPress={reload}>
+        <Text>reload</Text>
+      </TouchableOpacity>
       {feeds && (
         <View style={styles.wrapper}>
           {/* feed */}
@@ -55,6 +77,7 @@ const Home = () => {
             snapToInterval={width}
             snapToAlignment="start"
             decelerationRate={"fast"}
+            extraData={refresh}
           />
           <CommentModal
             isVisible={isVisible}

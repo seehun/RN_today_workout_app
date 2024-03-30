@@ -9,11 +9,30 @@ import {
   FlatList,
   Dimensions,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+import storage from "../../storage";
 
 const { width } = Dimensions.get("window");
 
 const Search = ({ navigation }) => {
+  const [feeds, setFeeds] = useState();
+
+  const getFeedData = () => {
+    storage
+      .load({
+        key: "feeds",
+      })
+      .then((res) => setFeeds(res))
+      .catch((err) => {
+        console.warn(err.message);
+      });
+  };
+
+  useEffect(() => {
+    getFeedData();
+  }, []);
+
   const renderSearch = ({ item }) => {
     const handleSearchItemClick = () => {};
     return (
@@ -46,7 +65,7 @@ const Search = ({ navigation }) => {
         </View>
         {/* imageList */}
         <FlatList
-          data={dummy_feed}
+          data={feeds}
           renderItem={renderSearch}
           keyExtractor={(item) => item.feed_id}
           removeClippedSubviews
@@ -62,8 +81,6 @@ export default Search;
 
 import searchIcon from "../../assets/icons/search.png";
 import multi from "../../assets/icons/multi.png";
-
-import dummy_feed from "../../static/dummy_feed";
 
 const styles = StyleSheet.create({
   container: {

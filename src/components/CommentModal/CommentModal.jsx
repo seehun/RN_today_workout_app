@@ -82,6 +82,7 @@ const CommentModal = ({ isVisible, setIsVisible, feed_id }) => {
   };
 
   const handleSubmit = (text) => {
+    // setCurrentCommentId(commentData.length + 1);
     const newComment = {
       id: currentCommentId,
       name: "me",

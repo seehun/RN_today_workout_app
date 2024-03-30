@@ -29,6 +29,19 @@ const RecentSearchItem = () => {
 
 const SearchList = ({ route, navigation }) => {
   const [keyword, setKeyword] = useState("");
+  const [feeds, setFeeds] = useState();
+  const [searchedFeed, setSearchedFeed] = useState();
+
+  const getFeedData = () => {
+    storage
+      .load({
+        key: "feeds",
+      })
+      .then((res) => setFeeds(res))
+      .catch((err) => {
+        console.warn(err.message);
+      });
+  };
 
   const inputRef = useRef();
 
@@ -37,6 +50,9 @@ const SearchList = ({ route, navigation }) => {
     Keyboard.dismiss();
     inputRef.current.focus();
   };
+
+  const handleSearch = () => {};
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       {/* search */}
@@ -46,7 +62,10 @@ const SearchList = ({ route, navigation }) => {
         </TouchableOpacity>
         {/* 검색창 */}
         <View style={styles.searchWrapper}>
-          <TouchableOpacity style={styles.touchIconStyle}>
+          <TouchableOpacity
+            style={styles.touchIconStyle}
+            onPress={handleSearch}
+          >
             <Image source={searchIcon} style={styles.SearchIcon} />
           </TouchableOpacity>
           <TextInput
