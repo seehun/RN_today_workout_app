@@ -39,7 +39,7 @@ const CustomBottomTabs = ({ state, navigation, insets, descriptors }) => {
               return bool ? search_on : search;
             case "Add":
               return add;
-            case "Chatting": // chatting 으로 구성
+            case "ChatTab": // chatting 으로 구성
               return bool ? chat_on : chat;
             case "Person":
               return bool ? person_on : person;

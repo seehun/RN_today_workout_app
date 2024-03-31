@@ -59,6 +59,7 @@ const AddDetail = ({ navigation, route }) => {
 
     // console.log(newFeedData);
 
+    //storage update
     storage.save({
       key: "feeds",
       data: newFeedData,

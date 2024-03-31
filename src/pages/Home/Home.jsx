@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./HomeStyle";
+import axios from "axios";
 
 import CommentModal from "../../components/CommentModal/CommentModal";
 import FeedItem from "./FeedRender";
@@ -29,16 +30,19 @@ const Home = () => {
       })
       .then((res) => setFeeds(res))
       .catch((err) => {
-        console.warn(err.message);
+        // console.warn(err.message);
       });
   };
 
+  // const getData = async () => {
+  //   const feed = await axios.get("http://54.180.90.124:8080/feed");
+  //   console.log(feed);
+  // };
+
   useEffect(() => {
-    // console.log("1");
+    // getData();
     getFeedData();
   }, []);
-
-  // console.log(feeds);
 
   const renderFeeds = ({ item, index }) => {
     // console.log("item", item);

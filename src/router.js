@@ -9,6 +9,7 @@ import SearchList from "./pages/Search/SearchList";
 import Add from "./pages/Add/Add";
 import AddDetail from "./pages/Add/AddDetail";
 import Chatting from "./pages/Chatting/Chatting";
+import ChattingDetail from "./pages/Chatting/ChattingDetail";
 import Person from "./pages/Person/Person";
 
 import CustomBottomTabs from "./components/CustomBottomTabs/CustomBottomTabs";
@@ -30,6 +31,20 @@ const SearchTab = () => {
   );
 };
 
+const ChatTab = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: false,
+      }}
+    >
+      <Stack.Screen name="Chatting" component={Chatting} />
+      <Stack.Screen name="ChattingDetail" component={ChattingDetail} />
+    </Stack.Navigator>
+  );
+};
+
 const renderTabBar = (props) => <CustomBottomTabs {...props} />;
 
 const MainTab = () => {
@@ -41,7 +56,7 @@ const MainTab = () => {
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="SearchTab" component={SearchTab} />
       <Tab.Screen name="Add" component={Add} />
-      <Tab.Screen name="Chatting" component={Chatting} />
+      <Tab.Screen name="ChatTab" component={ChatTab} />
       <Tab.Screen name="Person" component={Person} />
     </Tab.Navigator>
   );

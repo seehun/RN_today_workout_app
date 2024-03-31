@@ -1,5 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 import React, { useEffect } from "react";
+
+const { width, height } = Dimensions.get("window");
 
 const Splash = ({ navigation }) => {
   useEffect(() => {
@@ -9,9 +11,18 @@ const Splash = ({ navigation }) => {
   }, []);
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Splash</Text>
+      <Image source={logo} style={styles.image} />
     </View>
   );
 };
+
+import logo from "../../assets/icons/workout.png";
+
+const styles = StyleSheet.create({
+  image: {
+    width: 48,
+    height: 48,
+  },
+});
 
 export default Splash;
