@@ -12,6 +12,7 @@ import Chatting from "./pages/Chatting/Chatting";
 import ChattingDetail from "./pages/Chatting/ChattingDetail";
 import Person from "./pages/Person/Person";
 import Follower from "./pages/Person/Follower";
+import FeedDetail from "./components/FeedDetail/FeedDetail";
 
 import CustomBottomTabs from "./components/CustomBottomTabs/CustomBottomTabs";
 
@@ -74,6 +75,7 @@ const Router = () => {
       <Stack.Screen name="MainTab" component={MainTab} />
       <Stack.Screen name="AddDetail" component={AddDetail} />
       <Stack.Screen name="Follower" component={Follower} />
+      <Stack.Screen name="FeedDetail" component={FeedDetail} />
     </Stack.Navigator>
   );
 };

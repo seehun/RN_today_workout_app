@@ -51,7 +51,9 @@ const Search = ({ navigation, route }) => {
   }, [route.params]);
 
   const renderSearch = ({ item }) => {
-    const handleSearchItemClick = () => {};
+    const handleSearchItemClick = () => {
+      navigation.navigate("FeedDetail", { item });
+    };
     return (
       <TouchableOpacity
         style={styles.searchItemWrapper}

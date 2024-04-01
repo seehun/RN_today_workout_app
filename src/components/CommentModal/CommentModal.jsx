@@ -13,6 +13,7 @@ import Modal from "react-native-modal";
 
 import { setCommentDataInStorage } from "../../utils";
 import storage from "../../storage";
+import my_data from "../../static/my_data";
 
 // comment item
 const CommentItem = ({ item, index }) => {
@@ -85,10 +86,10 @@ const CommentModal = ({ isVisible, setIsVisible, feed_id }) => {
     // setCurrentCommentId(commentData.length + 1);
     const newComment = {
       id: currentCommentId,
-      name: "me",
-      user_id: 100,
+      name: my_data.name,
+      user_id: my_data.user_id,
       contents: text,
-      profileImage: "https://avatar.iran.liara.run/public",
+      profileImage: my_data.profileImage,
     };
     // 들어갈 댓글 데이터
     const newCommentData = [...commentData, { ...newComment }];
