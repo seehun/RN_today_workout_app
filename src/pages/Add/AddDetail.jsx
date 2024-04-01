@@ -10,11 +10,13 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import storage from "../../storage";
+import Toast from "../../components/Toast/Toast";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 const AddDetail = ({ navigation, route }) => {
   const [keyword, setKeyword] = useState("");
+  const [toastVisible, setToastVisible] = useState(false);
   const imageData = route.params.selectedImage;
 
   //feed 정보 들고와서 추가해주기 -> 비효율적
@@ -76,8 +78,10 @@ const AddDetail = ({ navigation, route }) => {
       data: feedNum + 1,
       expires: 1000 * 3600,
     });
-
-    navigation.navigate("MainTab");
+    //TODO
+    setToastVisible(!toastVisible);
+    //TODO
+    // navigation.navigate("MainTab");
   };
 
   return (
@@ -118,6 +122,11 @@ const AddDetail = ({ navigation, route }) => {
           <Text style={styles.submitText}>공유</Text>
         </TouchableOpacity>
       </View>
+      <Toast
+        content={"업로드 되었습니다"}
+        visible={toastVisible}
+        handleCancel={() => setToastVisible(!toastVisible)}
+      />
     </SafeAreaView>
   );
 };

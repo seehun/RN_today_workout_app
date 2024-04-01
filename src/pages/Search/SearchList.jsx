@@ -110,8 +110,6 @@ const SearchList = ({ route, navigation }) => {
         {/* 최근검색어목록 */}
         <View>
           <RecentSearchItem />
-          <RecentSearchItem />
-          <RecentSearchItem />
         </View>
       </View>
     </SafeAreaView>
