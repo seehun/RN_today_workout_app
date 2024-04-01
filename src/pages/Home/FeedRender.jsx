@@ -37,6 +37,8 @@ const FeedItem = ({
     setFeedCommentId(item.feed_id);
   };
 
+  console.log(item.feed_type);
+
   return (
     <ScrollView
       style={styles.feedContainer}
@@ -56,13 +58,8 @@ const FeedItem = ({
         </TouchableOpacity>
       </View>
       <Image
-        source={{ uri: item.feedImg[0] }}
-        style={{
-          width: width,
-          height: width,
-          marginBottom: 8,
-          backgroundColor: "#000",
-        }}
+        source={{ uri: item.feedContent[0] }}
+        style={styles.feedImage}
         resizeMode="contain"
       />
       {/* feedDetail */}

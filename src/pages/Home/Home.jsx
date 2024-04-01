@@ -5,6 +5,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Text,
+  ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import styles from "./HomeStyle";
@@ -73,9 +74,10 @@ const Home = () => {
       <TouchableOpacity onPress={reload}>
         <Text style={{ color: "#fff" }}>reload</Text>
       </TouchableOpacity>
-      {feeds && (
+      {refresh ? (
+        <ActivityIndicator size="large" />
+      ) : (
         <View style={styles.wrapper}>
-          {/* feed */}
           <FlatList
             horizontal
             data={feeds}

@@ -117,6 +117,12 @@ const styles = StyleSheet.create({
   feedTime: {
     color: "#828282",
   },
+  feedImage: {
+    width: width,
+    height: width,
+    marginBottom: 8,
+    backgroundColor: "#000",
+  },
   feedFeatureIconGroup: {
     flexDirection: "row",
     alignItems: "center",

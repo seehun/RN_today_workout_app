@@ -53,7 +53,7 @@ const AddDetail = ({ navigation, route }) => {
       user_id: my_data.user_id,
       name: my_data.name,
       profileImage: my_data.profileImage,
-      feedImg: [imageData.uri],
+      feedContent: [imageData.uri],
       category: category,
       contents: keyword,
       like: 0,
@@ -90,7 +90,7 @@ const AddDetail = ({ navigation, route }) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#000" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#828282" }}>
       {/* 헤더 */}
       <View style={styles.header}>
         <View style={styles.headerLeft}>
@@ -174,8 +174,8 @@ const styles = StyleSheet.create({
     color: "#fff",
   },
   icon: {
-    width: 48,
-    height: 48,
+    width: 28,
+    height: 28,
   },
   nextBtn: {
     fontWeight: "bold",
