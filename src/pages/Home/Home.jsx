@@ -43,6 +43,10 @@ const Home = () => {
     // getData();
     getFeedData();
   }, []);
+  useEffect(() => {
+    // getData();
+    console.log(feeds);
+  }, [feeds]);
 
   const renderFeeds = ({ item, index }) => {
     // console.log("item", item);

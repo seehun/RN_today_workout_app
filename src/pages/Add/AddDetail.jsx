@@ -11,6 +11,7 @@ import {
 import React, { useEffect, useState } from "react";
 import storage from "../../storage";
 import Toast from "../../components/Toast/Toast";
+import DropDownPicker from "react-native-dropdown-picker";
 
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
@@ -19,6 +20,13 @@ const AddDetail = ({ navigation, route }) => {
   const [toastVisible, setToastVisible] = useState(false);
   const imageData = route.params.selectedImage;
 
+  //category
+  const [open, setOpen] = useState(false);
+  const [category, setCategory] = useState("헬스");
+  const [items, setItems] = useState([
+    { label: "헬스", value: "헬스" },
+    { label: "러닝", value: "러닝" },
+  ]);
   //feed 정보 들고와서 추가해주기 -> 비효율적
   const [feedData, setFeedData] = useState();
   const [feedNum, setFeedNum] = useState();
@@ -40,15 +48,13 @@ const AddDetail = ({ navigation, route }) => {
   }, []);
 
   const handleSubmit = async () => {
-    // getFeedData();
-
     const newFeed = {
       feed_id: feedNum + 1,
-      user_id: 100,
-      name: "me",
-      profileImage: "https://picsum.photos/400/400",
+      user_id: my_data.user_id,
+      name: my_data.name,
+      profileImage: my_data.profileImage,
       feedImg: [imageData.uri],
-      category: "헬스",
+      category: category,
       contents: keyword,
       like: 0,
       myLike: false,
@@ -56,10 +62,7 @@ const AddDetail = ({ navigation, route }) => {
       likeUsers: [],
     };
 
-    // console.log(feedData, newFeed);
     const newFeedData = [...feedData, { ...newFeed }];
-
-    // console.log(newFeedData);
 
     //storage update
     storage.save({
@@ -81,6 +84,9 @@ const AddDetail = ({ navigation, route }) => {
     //TODO
     setToastVisible(!toastVisible);
     //TODO
+    setTimeout(() => {
+      navigation.navigate("MainTab");
+    }, 1000);
     // navigation.navigate("MainTab");
   };
 
@@ -98,6 +104,17 @@ const AddDetail = ({ navigation, route }) => {
       {/* 사진 */}
       <View style={styles.imageContainer}>
         <Image source={{ uri: imageData.uri }} style={styles.image} />
+      </View>
+      {/* 카테고리 */}
+      <View style={styles.selectCategory}>
+        <DropDownPicker
+          open={open}
+          value={category}
+          items={items}
+          setOpen={setOpen}
+          setValue={setCategory}
+          setItems={setItems}
+        />
       </View>
       {/* 텍스트 */}
       <View>
@@ -134,6 +151,7 @@ const AddDetail = ({ navigation, route }) => {
 export default AddDetail;
 
 import leftArrow from "../../assets/icons/leftArrow.png";
+import my_data from "../../static/my_data";
 
 const styles = StyleSheet.create({
   // header
@@ -174,6 +192,10 @@ const styles = StyleSheet.create({
   image: {
     width: SCREEN_WIDTH / 1.3,
     height: SCREEN_WIDTH / 1.3,
+  },
+  //category
+  selectCategory: {
+    zIndex: 2,
   },
   //text
   inputStyle: {

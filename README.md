@@ -18,6 +18,9 @@
 - 카메라  
   npm install @react-native-camera-roll/camera-roll --save
 
-- 스토리지
-  npm install react-native-storage
+- 스토리지  
+  npm install react-native-storage  
   npm install @react-native-async-storage/async-storage
+
+- 드롭다운 피커  
+  npm i react-native-dropdown-picker

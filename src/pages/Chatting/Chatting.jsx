@@ -20,9 +20,7 @@ const HomeScreen = ({ navigation }) => {
         (e, i) => e.user_id === item.user_id
       );
       const chatDataLength = chatData[0].chat_data.length;
-      console.log(chatDataLength);
       if (chatDataLength !== 0) {
-        console.log(chatData[0].chat_data[chatDataLength - 1].content);
         return chatData[0].chat_data[chatDataLength - 1].content;
       }
     };
