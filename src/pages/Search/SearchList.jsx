@@ -20,7 +20,7 @@ const RecentSearchItem = () => {
           source={{ uri: "https://picsum.photos/130/130" }}
           style={recentSearchItemStyles.image}
         />
-        <Text>asdf</Text>
+        <Text style={{ color: "#fff" }}>asdf</Text>
       </TouchableOpacity>
       <TouchableOpacity>
         <Image source={deleteIcon} style={recentSearchItemStyles.deleteIcon} />
@@ -62,7 +62,7 @@ const SearchList = ({ route, navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#828282" }}>
       {/* search */}
       <View style={styles.searchMenuWrapper}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -125,7 +125,7 @@ import deleteIcon from "../../assets/icons/delete.png";
 const styles = StyleSheet.create({
   searchMenuWrapper: {
     height: 68,
-    backgroundColor: "#fff",
+    backgroundColor: "#828282",
     flexDirection: "row",
     alignItems: "center",
     borderBottomWidth: 1,
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     flexDirection: "row",
-    backgroundColor: "#f2f2f2",
+    backgroundColor: "#000",
     marginRight: 12,
     marginLeft: 16,
     marginVertical: 12,
@@ -184,9 +184,10 @@ const styles = StyleSheet.create({
   searchText: {
     fontSize: 16,
     fontWeight: "500",
+    color: "#fff",
   },
   allDeleteLabel: {
-    color: "#828282",
+    color: "#eaeaea",
   },
 });
 

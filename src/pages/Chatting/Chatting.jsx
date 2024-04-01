@@ -29,21 +29,15 @@ const HomeScreen = ({ navigation }) => {
     return (
       <TouchableOpacity
         onPress={() => navigation.navigate("ChattingDetail", { params: item })}
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          gap: 8,
-          marginBottom: 16,
-          marginRight: 16,
-        }}
+        style={styles.chatItemWrapper}
       >
         <Image
           source={{ uri: item.profileImage }}
           style={styles.profileImage}
         />
         <View style={{ gap: 4 }}>
-          <Text style={{ fontSize: 14, color: "#333" }}>{item.name}</Text>
-          <Text style={{ fontSize: 13, color: "#828282" }}>{lastMessage}</Text>
+          <Text style={{ fontSize: 14, color: "#fff" }}>{item.name}</Text>
+          <Text style={{ fontSize: 13, color: "#fff" }}>{lastMessage}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -58,8 +52,8 @@ const HomeScreen = ({ navigation }) => {
           alignItems: "center",
         }}
       >
-        <Text style={{ fontWeight: "400", color: "#828282" }}>친구 </Text>
-        <Text style={{ fontSize: 14, color: "#4F4F4F" }}>
+        <Text style={{ fontWeight: "400", color: "#fff" }}>친구 </Text>
+        <Text style={{ fontSize: 14, color: "#fff" }}>
           {dummy_profile.length}명
         </Text>
       </View>
@@ -67,7 +61,7 @@ const HomeScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#828282" }}>
       <View style={{ flex: 1 }}>
         <View style={{ marginHorizontal: 16, flex: 1 }}>
           <FlatList
@@ -90,5 +84,12 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
+  },
+  chatItemWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    marginBottom: 16,
+    marginRight: 16,
   },
 });

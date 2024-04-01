@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 500,
     lineHeight: 17.47,
-    color: "#828282",
+    color: "#fff",
     textAlign: "center",
   },
   rightChatRowWrapper: {
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   chatTime: {
     fontSize: 10,
     fontWeight: 500,
-    color: "#737373",
+    color: "#fff",
     lineHeight: 15,
   },
   //

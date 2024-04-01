@@ -20,7 +20,7 @@ const { width, height } = Dimensions.get("window");
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [feedCommentId, setFeedCommentId] = useState();
-  const [feeds, setFeeds] = useState();
+  const [feeds, setFeeds] = useState([]);
   const [refresh, setRefresh] = useState(false);
 
   const getFeedData = () => {
@@ -46,6 +46,7 @@ const Home = () => {
   useEffect(() => {
     // getData();
     console.log(feeds);
+    console.log(refresh);
   }, [feeds]);
 
   const renderFeeds = ({ item, index }) => {
@@ -70,7 +71,7 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity onPress={reload}>
-        <Text>reload</Text>
+        <Text style={{ color: "#fff" }}>reload</Text>
       </TouchableOpacity>
       {feeds && (
         <View style={styles.wrapper}>

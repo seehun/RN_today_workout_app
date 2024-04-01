@@ -5,7 +5,7 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#828282",
   },
   wrapper: {
     flex: 1,
@@ -41,11 +41,11 @@ const styles = StyleSheet.create({
   PersonText: {
     maxWidth: 52,
     fontSize: 16,
-    color: "#4f4f4f",
+    color: "#fff",
   },
   //feed
   feedContainer: {
-    backgroundColor: "#fff",
+    backgroundColor: "#828282",
     paddingVertical: 24,
     flex: 1,
     // marginBottom: 40,
@@ -100,12 +100,12 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     paddingBottom: 16,
     borderBottomWidth: 1,
-    borderBottomColor: "#F5f5f5",
+    borderBottomColor: "#fff",
   },
   contentsText: {
     fontSize: 16,
     maxWidth: width - 32,
-    color: "#4f4f4f",
+    color: "#fff",
   },
   feedFeature: {
     marginHorizontal: 16,
@@ -129,6 +129,9 @@ const styles = StyleSheet.create({
   feedFeatureIcon: {
     width: 40,
     height: 40,
+  },
+  infoText: {
+    color: "#fff",
   },
 });
 

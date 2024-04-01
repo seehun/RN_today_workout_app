@@ -77,13 +77,13 @@ import dummy_chatting from "../../static/dummy_chatting";
 const styles = StyleSheet.create({
   SafeAreaContainer: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#828282",
   },
   mainContainer: {
     flex: 1,
   },
   headerWrapper: {
-    backgroundColor: "#fff",
+    backgroundColor: "#828282",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   },
   chattingScreen: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#828282",
     paddingHorizontal: 16,
   },
   chatDayWrapper: {
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
   },
   leftBubbleWrapper: {
-    backgroundColor: "#fff",
+    backgroundColor: "#000",
     borderRadius: 8,
     padding: 8,
   },
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   chatTime: {
     fontSize: 10,
     fontWeight: 500,
-    color: "#737373",
+    color: "#fff",
     lineHeight: 15,
   },
   //
@@ -217,34 +217,5 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     borderColor: "#efefef",
     paddingHorizontal: 12,
-  },
-});
-
-const modalStyles = StyleSheet.create({
-  container: {
-    margin: 0,
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  wrapper: {
-    width: width,
-    paddingTop: 8,
-    backgroundColor: "#fff",
-    height: 176,
-  },
-  icon: {
-    transform: [{ rotate: "45deg" }],
-  },
-  btn: {
-    alignItems: "center",
-    gap: 4,
-  },
-  btnText: {
-    color: "#828282",
-    fontWeight: 400,
-  },
-  btnIcon: {
-    width: 48,
-    height: 48,
   },
 });

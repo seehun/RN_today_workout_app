@@ -55,12 +55,13 @@ const Add = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#000" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#828282" }}>
       {/* 헤더 */}
       <View style={styles.header}>
         <View style={styles.headerLeft}>
           <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Image source={deleteIcon} />
+            {/* <Image source={deleteIcon} /> */}
+            <Text style={styles.deleteText}>X</Text>
           </TouchableOpacity>
           <Text style={styles.headerText}>새 게시물</Text>
         </View>
@@ -120,9 +121,13 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
   },
+  deleteText: {
+    color: "#fff",
+    fontSize: 28,
+  },
   nextBtn: {
     fontWeight: "bold",
-    color: "#6297FF",
+    color: "#fff",
     fontSize: 18,
   },
   image: {

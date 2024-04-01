@@ -21,7 +21,7 @@ export default BasicHeader;
 
 const styles = StyleSheet.create({
   headerWrapper: {
-    backgroundColor: "#fff",
+    backgroundColor: "#828282",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     lineHeight: 20,
     textAlign: "center",
-    color: "#000",
+    color: "#fff",
   },
 });

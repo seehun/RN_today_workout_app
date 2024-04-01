@@ -10,7 +10,14 @@ const Splash = ({ navigation }) => {
     }, 1000);
   }, []);
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <View
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#828282",
+      }}
+    >
       <Image source={logo} style={styles.image} />
     </View>
   );

@@ -65,10 +65,10 @@ const Search = ({ navigation, route }) => {
     );
   };
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#828282" }}>
       <View style={styles.container}>
         {/* searchWrapper */}
-        <View style={{ height: 68, backgroundColor: "#fff" }}>
+        <View style={{ height: 68, backgroundColor: "#828282" }}>
           <TouchableOpacity
             style={styles.searchWrapper}
             onPress={() => navigation.navigate("SearchList")}
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "center",
-    backgroundColor: "#f8f8f8",
+    backgroundColor: "#000",
     marginHorizontal: 16,
     marginVertical: 12,
     borderRadius: 4,
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   //search Item
   searchItemWrapper: {
     borderWidth: 1,
-    borderColor: "#fff",
+    borderColor: "#000",
   },
   searchItem: {
     width: width / 3 - 2,

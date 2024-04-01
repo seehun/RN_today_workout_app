@@ -32,7 +32,7 @@ const Tab = createMaterialTopTabNavigator();
 
 const FollowerTab = () => {
   return (
-    <View style={{ flex: 1, backgroundColor: "#fff" }}>
+    <View style={{ flex: 1, backgroundColor: "#828282" }}>
       <Text style={styles.title}>Following</Text>
       <RecentSearchItem />
       <RecentSearchItem />
@@ -43,7 +43,7 @@ const FollowerTab = () => {
 
 const FollowingTab = () => {
   return (
-    <View style={{ flex: 1, backgroundColor: "#fff" }}>
+    <View style={{ flex: 1, backgroundColor: "#828282" }}>
       <Text style={styles.title}>Following</Text>
       <RecentSearchItem />
       <RecentSearchItem />
@@ -54,18 +54,19 @@ const FollowingTab = () => {
 
 const Follower = () => {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#828282" }}>
       <BasicHeader title={"sehun"} />
       <Tab.Navigator
         screenOptions={{
-          tabBarInactiveTintColor: "#828282",
-          tabBarActiveTintColor: "#333",
+          tabBarInactiveTintColor: "#fff",
+          tabBarActiveTintColor: "#fff",
           tabBarIndicatorStyle: {
-            backgroundColor: "#4f4f4f",
+            backgroundColor: "fff",
             width: 120,
             height: 1,
             marginLeft: 40,
           },
+          tabBarStyle: { backgroundColor: "#828282" },
         }}
       >
         <Tab.Screen name="100 팔로워" component={FollowerTab} />

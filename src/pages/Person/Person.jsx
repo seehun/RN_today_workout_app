@@ -13,7 +13,7 @@ import my_data from "../../static/my_data";
 
 const Person = ({ navigation }) => {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#828282" }}>
       <View style={styles.profileWrapper}>
         <Text style={styles.profileName}>sehun</Text>
         <TouchableOpacity>
@@ -26,26 +26,26 @@ const Person = ({ navigation }) => {
             source={{ uri: my_data.profileImage }}
             style={styles.profileImage}
           />
-          <Text style={{ fontSize: 13 }}>{my_data.name}</Text>
+          <Text style={{ fontSize: 13, color: "#fff" }}>{my_data.name}</Text>
         </View>
         <View style={styles.profileDetailNumber}>
           <TouchableOpacity style={styles.profileDetailBtn}>
-            <Text>게시물</Text>
-            <Text>{my_data.uploaded_item_num}</Text>
+            <Text style={styles.text}>게시물</Text>
+            <Text style={styles.text}>{my_data.uploaded_item_num}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.profileDetailBtn}
             onPress={() => navigation.navigate("Follower")}
           >
-            <Text>팔로워</Text>
-            <Text>{my_data.follower}</Text>
+            <Text style={styles.text}>팔로워</Text>
+            <Text style={styles.text}>{my_data.follower}</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.profileDetailBtn}
             onPress={() => navigation.navigate("Follower")}
           >
-            <Text>팔로잉</Text>
-            <Text>{my_data.following}</Text>
+            <Text style={styles.text}>팔로잉</Text>
+            <Text style={styles.text}>{my_data.following}</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 16,
     marginVertical: 16,
   },
-  profileName: { fontSize: 16, fontWeight: "500" },
+  profileName: { fontSize: 16, fontWeight: "500", color: "#fff" },
   icon: {
     width: 32,
     height: 32,
@@ -87,4 +87,5 @@ const styles = StyleSheet.create({
   profileDetailBtn: {
     alignItems: "center",
   },
+  text: { color: "#fff" },
 });

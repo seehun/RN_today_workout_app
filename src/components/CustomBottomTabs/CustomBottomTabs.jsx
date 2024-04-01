@@ -107,15 +107,13 @@ import person_on from "../../assets/icons/bottomTab/person_on.png";
 
 const styles = StyleSheet.create({
   bottomTabsWrapper: {
-    backgroundColor: "#fff",
+    backgroundColor: "#828282",
     width: "100%",
     flexDirection: "row",
     position: "absolute",
     bottom: 0,
     justifyContent: "space-between",
     borderTopWidth: 0.5,
-    borderLeftWidth: 0.5,
-    borderRightWidth: 0.5,
     borderStyle: "solid",
     borderColor: "#eee",
     paddingTop: 10,

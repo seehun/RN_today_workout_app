@@ -61,7 +61,7 @@ const FeedItem = ({
           width: width,
           height: width,
           marginBottom: 8,
-          backgroundColor: "#f8f8f8",
+          backgroundColor: "#000",
         }}
         resizeMode="contain"
       />
@@ -72,13 +72,13 @@ const FeedItem = ({
         </View>
         <View style={styles.feedDetailInfoGroup}>
           <TouchableOpacity style={styles.feedDetailInfo}>
-            <Text>좋아요</Text>
-            <Text>{heartNum}</Text>
+            <Text style={styles.infoText}>좋아요</Text>
+            <Text style={styles.infoText}>{heartNum}</Text>
           </TouchableOpacity>
-          <Text>·</Text>
+          <Text style={styles.infoText}>·</Text>
           <TouchableOpacity style={styles.feedDetailInfo}>
-            <Text>댓글</Text>
-            <Text>{item.comments}</Text>
+            <Text style={styles.infoText}>댓글</Text>
+            <Text style={styles.infoText}>{item.comments}</Text>
           </TouchableOpacity>
         </View>
       </View>

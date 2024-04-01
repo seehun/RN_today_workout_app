@@ -87,7 +87,6 @@ const AddDetail = ({ navigation, route }) => {
     setTimeout(() => {
       navigation.navigate("MainTab");
     }, 1000);
-    // navigation.navigate("MainTab");
   };
 
   return (
