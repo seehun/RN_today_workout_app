@@ -16,7 +16,7 @@ import FeedItem from "./FeedRender";
 
 import storage from "../../storage";
 
-const { width, height } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -35,23 +35,19 @@ const Home = () => {
       });
   };
 
-  // const getData = async () => {
-  //   const feed = await axios.get("http://54.180.90.124:8080/feed");
-  //   console.log(feed);
-  // };
+  const getData = async () => {
+    const feed = await axios.get(
+      "http://54.180.90.124:8080/feed?page=0&pageSize=10"
+    );
+    console.log(feed);
+  };
 
   useEffect(() => {
-    // getData();
+    getData();
     getFeedData();
   }, []);
-  useEffect(() => {
-    // getData();
-    console.log(feeds);
-    console.log(refresh);
-  }, [feeds]);
 
   const renderFeeds = ({ item, index }) => {
-    // console.log("item", item);
     return (
       <FeedItem
         item={item}
@@ -62,7 +58,6 @@ const Home = () => {
       />
     );
   };
-  // console.log(feedCommentId);
 
   const reload = () => {
     getFeedData();

@@ -55,6 +55,7 @@ const AddDetail = ({ navigation, route }) => {
       profileImage: my_data.profileImage,
       feedContent: [imageData.uri],
       category: category,
+      feed_type: "image",
       contents: keyword,
       like: 0,
       myLike: false,
@@ -62,7 +63,7 @@ const AddDetail = ({ navigation, route }) => {
       likeUsers: [],
     };
 
-    const newFeedData = [...feedData, { ...newFeed }];
+    const newFeedData = [{ ...newFeed }, ...feedData];
 
     //storage update
     storage.save({

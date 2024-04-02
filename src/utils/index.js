@@ -5,6 +5,7 @@ import {
   feed1_dummy_comment,
   feed2_dummy_comment,
   feed3_dummy_comment,
+  feed4_dummy_comment,
 } from "../static/dummy_comments";
 
 //초기화 로직
@@ -19,7 +20,7 @@ export const setInitialFeeds = () => {
   //feed number ->id값으로 이용
   storage.save({
     key: "feedNumber",
-    data: 3,
+    data: 4,
     expires: 1000 * 60,
   });
 };
@@ -44,6 +45,13 @@ export const setInitialComments = () => {
     key: "comments",
     id: "3", //feed_id
     data: feed3_dummy_comment,
+    expires: 1000 * 3600,
+  });
+
+  storage.save({
+    key: "comments",
+    id: "4", //feed_id
+    data: feed4_dummy_comment,
     expires: 1000 * 3600,
   });
 };

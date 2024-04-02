@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import styles from "./HomeStyle";
+import Video from "react-native-video";
 
 const { width, height } = Dimensions.get("window");
 
@@ -37,8 +38,6 @@ const FeedItem = ({
     setFeedCommentId(item.feed_id);
   };
 
-  console.log(item.feed_type);
-
   return (
     <ScrollView
       style={styles.feedContainer}
@@ -57,11 +56,29 @@ const FeedItem = ({
           <Image source={more} style={{ width: 24, height: 24 }} />
         </TouchableOpacity>
       </View>
-      <Image
-        source={{ uri: item.feedContent[0] }}
-        style={styles.feedImage}
-        resizeMode="contain"
-      />
+      {/* feed content  image or video */}
+      {item.feed_type === "image" ? (
+        <Image
+          source={{
+            uri: item.feedContent[0],
+          }}
+          style={styles.feedImage}
+          resizeMode="contain"
+        />
+      ) : (
+        <Video
+          source={{
+            uri: item.feedContent[0],
+          }}
+          resizeMode="contain" //cover , contain
+          playInBackground={false}
+          playWhenInactive={false}
+          repeat={true}
+          rate={1}
+          style={styles.feedVideo}
+        />
+      )}
+
       {/* feedDetail */}
       <View style={styles.feedDetail}>
         <View style={styles.feedDetailCategory}>

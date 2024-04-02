@@ -115,9 +115,15 @@ const styles = StyleSheet.create({
     marginVertical: 16,
   },
   feedTime: {
-    color: "#828282",
+    color: "#fff",
   },
   feedImage: {
+    width: width,
+    height: width,
+    marginBottom: 8,
+    backgroundColor: "#000",
+  },
+  feedVideo: {
     width: width,
     height: width,
     marginBottom: 8,

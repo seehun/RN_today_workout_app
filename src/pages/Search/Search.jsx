@@ -60,7 +60,10 @@ const Search = ({ navigation, route }) => {
         onPress={handleSearchItemClick}
       >
         {item.isMulti && <Image source={multi} style={styles.multiPhoto} />}
-        <Image source={{ uri: item.feedImg[0] }} style={styles.searchItem} />
+        <Image
+          source={{ uri: item.feedContent[0] }}
+          style={styles.searchItem}
+        />
       </TouchableOpacity>
     );
   };

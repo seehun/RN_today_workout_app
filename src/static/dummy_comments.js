@@ -32,3 +32,5 @@ export const feed2_dummy_comment = [
 ];
 
 export const feed3_dummy_comment = [];
+
+export const feed4_dummy_comment = [];
